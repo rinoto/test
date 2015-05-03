@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Demo {
+public class StreamsExample {
 
 	public static void filter() {
 
@@ -65,6 +65,16 @@ public class Demo {
 
 	}
 
+	public static void matching() {
+
+		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
+
+		// java8
+		boolean allMatch = list.stream().allMatch(i -> i < 10);
+		System.out.println(allMatch);
+
+	}
+
 	public static void streamIsLazy() {
 
 		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
@@ -82,7 +92,7 @@ public class Demo {
 	}
 
 	public static void main(String[] args) {
-		streamIsLazy();
+		matching();
 	}
 
 }
