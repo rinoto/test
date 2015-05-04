@@ -91,8 +91,53 @@ public class StreamsExample {
 
 	}
 
+	public static void infinitStream() {
+		// create an infinite sequence of numbers from 0 -> the Natural numbers
+		Stream<Integer> naturalNumbers = Stream.iterate(0, i -> i + 1);
+
+		List<Integer> collect = null;
+
+		// limit - gets the first ten
+		collect = naturalNumbers.limit(10).collect(Collectors.toList());
+
+		// skip - gets 10 from the 5th
+		// collect =
+		// naturalNumbers.skip(5).limit(10).collect(Collectors.toList());
+
+		// limit comes AFTER the filtering
+		// collect = naturalNumbers.filter(i -> i % 2 ==
+		// 0).limit(10).collect(Collectors.toList());
+
+		// collect = naturalNumbers.filter(i -> i % 2 == 0).map(i -> i /
+		// 2).limit(10).collect(Collectors.toList());
+
+		System.out.println(collect);
+	}
+
+	public static void parallelStream() {
+		// create an infinite sequence of numbers from 0 -> the Natural numbers
+		// and make it a parallel one
+		Stream<Integer> naturalNumbers = Stream.iterate(0, i -> i + 1).parallel();
+
+		List<Integer> collect = naturalNumbers.filter(i -> i % 2 == 0).map(i -> i / 2).limit(10)
+				.collect(Collectors.toList());
+
+		System.out.println(collect);
+	}
+
+	public static void sortingStream() {
+		// create an infinite sequence of numbers from 0 -> the Natural numbers
+		// and make it a parallel one
+		Stream<Integer> unsorted = Stream.of(2, 4, 1, 5, 7, 3);
+
+		// see javadoc for java.util.Comparator<T>
+		List<Integer> sortedList = unsorted.sorted((a, b) -> a - b).collect(Collectors.toList());
+
+		System.out.println(sortedList);
+	}
+
 	public static void main(String[] args) {
-		matching();
+		sortingStream();
 	}
 
 }
