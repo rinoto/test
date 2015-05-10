@@ -3,6 +3,7 @@ package org.inru.java8;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -44,6 +45,19 @@ public class StreamsExample {
 
 	}
 
+	public static void reduce() {
+
+		Stream<Integer> numbersStream = Stream.of(1, 2, 3, 4, 5, 6);
+
+		// sum of all the numbers using reduce(int, binaryOperator)
+		Integer reduced = numbersStream.reduce(0, (x, y) -> x + y);
+		System.out.println(reduced);
+
+		numbersStream = Stream.of(1, 2, 3, 4, 5, 6);
+		Optional<Integer> reducedOptional = numbersStream.reduce((x, y) -> x + y);
+		System.out.println(reducedOptional.get());
+	}
+
 	public static void flatMap() {
 
 		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
@@ -69,9 +83,23 @@ public class StreamsExample {
 
 		List<Integer> list = Arrays.asList(1, 2, 3, 4, 5);
 
-		// java8
-		boolean allMatch = list.stream().allMatch(i -> i < 10);
+		// old way
+		boolean allMatch = true;
+		for (Integer i : list) {
+			if (i >= 10) {
+				allMatch = false;
+				continue;
+			}
+		}
 		System.out.println(allMatch);
+
+		// java8
+		// returns true if all elements in the stream match the predicate
+		allMatch = list.stream().allMatch(i -> i < 10);
+		System.out.println(allMatch);
+
+		// anyMatch -> like allMatch, but returns true if at least one element
+		// satisfies the predicate
 
 	}
 
@@ -136,8 +164,21 @@ public class StreamsExample {
 		System.out.println(sortedList);
 	}
 
+	public static void peek() {
+
+		Stream<Integer> numbersStream = Stream.of(1, 2, 3, 4, 5, 6);
+
+		// mainly for debugging - just sees the element that is beeing passed in
+		// the stream to the next operation
+		List<Integer> collect = numbersStream.peek(x -> System.out.println("beginning: " + x)).map((x) -> x + 1)
+				.peek(x -> System.out.println("after map: " + x)).filter(x -> x < 5).collect(Collectors.toList());
+
+		System.out.println(collect);
+
+	}
+
 	public static void main(String[] args) {
-		sortingStream();
+		peek();
 	}
 
 }

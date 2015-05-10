@@ -19,5 +19,7 @@ public class LambdaExample2 {
 		});
 
 		method(name -> System.out.println("hi " + name));
+
+		InterfaceWithOneMethod a = (p) -> System.out.println("hi " + p);
 	}
 }

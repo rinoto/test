@@ -19,5 +19,19 @@ public class LambdaExample {
 		});
 
 		method(() -> System.out.println("hi"));
+
+		InterfaceWithOneMethod a = new InterfaceWithOneMethod() {
+
+			@Override
+			public void doSomething() {
+				System.out.println("hola a");
+
+			}
+		};
+
+		InterfaceWithOneMethod b = () -> System.out.println("hola b");
+
+		a.doSomething();
+		b.doSomething();
 	}
 }

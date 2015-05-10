@@ -6,6 +6,14 @@ Most info stolen form http://www.oracle.com/technetwork/articles/java/ma14-java-
 
 Let you treat **code as data**. Syntatic sugar for interfaces declaring just one method. 
 
+### Why "lambda"
+
+Name comes from Lambda Calculus (λ-calculus -  Alonzo Church 1936): method for creating functions,  formal system in mathematical logic for expressing computation based on function abstraction and application using variable binding and substitution.
+
+### Something new in programming languages?
+
+There have been Lambdas since Lisp 1958
+
 ### Shadowing
 Unlike local and anonymous classes, lambda expressions do not have any shadowing issues ("if a declaration of a type (such as a member variable or a parameter name) in a particular scope (such as an inner class or a method definition) has the same name as another declaration in the enclosing scope, then the declaration shadows the declaration of the enclosing scope") 
 Lambda expressions are lexically scoped. This means that they do not inherit any names from a supertype or introduce a new level of scoping. Declarations in a lambda expression are interpreted just as they are in the enclosing environment
