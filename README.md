@@ -1,5 +1,9 @@
 # Java8
 
+## What is new
+
+http://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html
+
 Most info stolen form http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html
 
 ## Lambdas
@@ -59,4 +63,27 @@ A stream consists of:
 + Source (elements)
 + **Intermediate** operations (e.g. map, filter, ..)
 + One **Terminal** operation (e.g. collect, allMatch, ...)
+
+## javac -paramters
+
+The -parameters option of the javac command can be used to store formal parameter names and enable the Reflection API to retrieve formal parameter names
+
+
+## Date-Time Package 
+
+A new set of packages that provide a comprehensive date-time model. Similar to Joda Time, but in Java.
+
+## JDBC 4.2
+
+TODO 
+
+## Concurrency (see last talk ;)
+
+## Removal of PermGen!
+
+Replaced with Metaspace.
+
+-XX:MaxMetaspaceSize can set the max size. Default is infinite.
+-XX:MetaspaceSize : define initial size
+ 
 
