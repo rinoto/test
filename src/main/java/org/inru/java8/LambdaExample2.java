@@ -2,24 +2,25 @@ package org.inru.java8;
 
 public class LambdaExample2 {
 
-	interface InterfaceWithOneMethod {
-		void doSomething(String name);
+	interface SayHiInterface {
+		void sayHiTo(String name);
 	}
 
-	public static void method(InterfaceWithOneMethod worker) {
-		worker.doSomething("ruben");
+	public static void method(SayHiInterface worker) {
+		worker.sayHiTo("ruben");
 	}
 
 	public static void main(String[] args) {
-		method(new InterfaceWithOneMethod() {
+		method(new SayHiInterface() {
 			@Override
-			public void doSomething(String name) {
+			public void sayHiTo(String name) {
 				System.out.println("hi " + name);
 			}
 		});
 
 		method(name -> System.out.println("hi " + name));
 
-		InterfaceWithOneMethod a = (p) -> System.out.println("hi " + p);
+		// (p) is the String parameter passed to sayHiTo(String)
+		SayHiInterface a = (p) -> System.out.println("hi " + p);
 	}
 }

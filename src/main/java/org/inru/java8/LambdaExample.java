@@ -2,36 +2,38 @@ package org.inru.java8;
 
 public class LambdaExample {
 
-	interface InterfaceWithOneMethod {
-		void doSomething();
+	interface SayHiInterface {
+		void sayHi();
 	}
 
-	public static void method(InterfaceWithOneMethod worker) {
-		worker.doSomething();
+	public static void method(SayHiInterface c) {
+		c.sayHi();
 	}
 
 	public static void main(String[] args) {
-		method(new InterfaceWithOneMethod() {
+		method(new SayHiInterface() {
 			@Override
-			public void doSomething() {
+			public void sayHi() {
 				System.out.println("hi");
 			}
 		});
 
 		method(() -> System.out.println("hi"));
 
-		InterfaceWithOneMethod a = new InterfaceWithOneMethod() {
+		SayHiInterface a = new SayHiInterface() {
 
 			@Override
-			public void doSomething() {
+			public void sayHi() {
 				System.out.println("hola a");
 
 			}
 		};
 
-		InterfaceWithOneMethod b = () -> System.out.println("hola b");
+		// bind methods to variables! (code as data)
+		SayHiInterface b = () -> System.out.println("hola b");
 
-		a.doSomething();
-		b.doSomething();
+		a.sayHi();
+		b.sayHi();
+		method(b);
 	}
 }

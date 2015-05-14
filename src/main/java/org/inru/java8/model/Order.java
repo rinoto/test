@@ -15,4 +15,8 @@ public class Order {
 				+ orderType + "]";
 	}
 
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+
 }

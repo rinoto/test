@@ -40,14 +40,6 @@ public class StreamsExampleCollectors {
 		System.out.println(concat);
 	}
 
-	private static void grouping() {
-		Stream<Order> strStream = Stream.of(OrderFixture.createOrder(OrderType.RESERVATION, 0),
-				OrderFixture.createOrder(OrderType.RESERVATION, 0), OrderFixture.createOrder(OrderType.PRODUCTION, 0));
-
-		Map<OrderType, List<Order>> groupOrders = strStream.collect(Collectors.groupingBy(o -> o.orderType));
-		System.out.println(groupOrders);
-	}
-
 	private static void sum() {
 		Stream<Order> strStream = Stream.of(OrderFixture.createOrder(OrderType.RESERVATION, 4),
 				OrderFixture.createOrder(OrderType.RESERVATION, 3), OrderFixture.createOrder(OrderType.PRODUCTION, 5));
@@ -56,7 +48,7 @@ public class StreamsExampleCollectors {
 		System.out.println(totalSum);
 	}
 
-	private static void concatWithOwnCollector() {
+	private static void concatWithOwnCollectorUsingCollectorMethodWithInterface() {
 		Stream<String> strStream = Stream.of("a", "b", "c", "d");
 
 		String concat = strStream.collect(new Collector<String, StringBuilder, String>() {
@@ -94,6 +86,19 @@ public class StreamsExampleCollectors {
 			}
 		});
 		System.out.println(concat);
+	}
+
+	private static void concatWithOwnCollectorUsingCollectorMethodWithLambdas() {
+		Stream<String> strStream = Stream.of("a", "b", "c", "d");
+
+		StringBuilder concat = strStream.collect(StringBuilder::new, // supplier
+				(sb, s) -> {
+					sb.append(s);
+					sb.append("#");
+				}, // accumulator
+				(sb, sb2) -> sb.append(sb2) // combiner
+				);
+		System.out.println(concat.toString());
 	}
 
 	private static void average() {
@@ -168,8 +173,25 @@ public class StreamsExampleCollectors {
 		System.out.println(average);
 	}
 
+	private static void grouping() {
+		Stream<Order> orderStream = Stream.of(OrderFixture.createOrder(OrderType.RESERVATION, 0),
+				OrderFixture.createOrder(OrderType.RESERVATION, 0), OrderFixture.createOrder(OrderType.PRODUCTION, 0));
+
+		Map<OrderType, List<Order>> groupOrders = orderStream.collect(Collectors.groupingBy(o -> o.orderType));
+		System.out.println(groupOrders);
+	}
+
+	private static void groupingWithAverage() {
+		Stream<Order> orderStream = Stream.of(OrderFixture.createOrder(OrderType.RESERVATION, 1),
+				OrderFixture.createOrder(OrderType.RESERVATION, 4), OrderFixture.createOrder(OrderType.PRODUCTION, 2));
+
+		Map<OrderType, Double> collect = orderStream.collect(Collectors.groupingBy(o -> o.orderType,
+				Collectors.averagingInt(Order::getTotalPrice)));
+		System.out.println(collect);
+	}
+
 	public static void main(String[] args) {
-		averageWithOwnCollector();
+		groupingWithAverage();
 	}
 
 }
