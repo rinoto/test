@@ -24,7 +24,7 @@ import org.inru.java8.model.OrderType;
  * @author rinoto
  *
  */
-public class CollectorsExample {
+public class StreamsExampleCollectors {
 
 	private static void count() {
 		Stream<Integer> intStream = Stream.of(1, 2, 3, 4);
