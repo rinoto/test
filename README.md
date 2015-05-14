@@ -44,7 +44,7 @@ Streams are a sequence of elements from a source that supports aggregate operati
 
 + **Sequence** of elements: A stream provides an interface to a sequenced set of values of a specific element type. However, streams don’t actually store elements; they are computed on demand.
 + **Source**: Streams consume from a data-providing source such as collections, arrays, or I/O resources.
-+ Aggregate **operations**: Streams support operations from functional programing languages, such as filter, map, reduce, find, match, sorted, and so on. 
++ Aggregate **operations**: Streams support operations from functional programming languages, such as filter, map, reduce, find, match, sorted, and so on. 
 
 
 ### Collections vs Streams
@@ -63,6 +63,11 @@ A stream consists of:
 + Source (elements)
 + **Intermediate** operations (e.g. map, filter, ..)
 + One **Terminal** operation (e.g. collect, allMatch, ...)
+
+### Reduction operations
+
+A terminal operation that returns one value combining the elements of the stream is called **reduction** operation (e.g. average, sum, min, max).
+JDK provides the **reduce** and **collect** methods as *general-purpose reduction operations*.
 
 ## javac -paramters
 
