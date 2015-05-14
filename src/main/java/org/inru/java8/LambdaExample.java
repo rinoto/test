@@ -1,5 +1,6 @@
 package org.inru.java8;
 
+
 public class LambdaExample {
 
 	interface SayHiInterface {
